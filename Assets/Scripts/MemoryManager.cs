@@ -28,13 +28,6 @@ public class MemoryManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI mTextGraphicDriverAllocatorMemory;
     [SerializeField] TextMeshProUGUI mTextTmpAllocatorSize;
 
-    [Header("Native Memory Info")]
-    [SerializeField] TextMeshProUGUI mTextNativeAllocatedMemory;
-    [SerializeField] TextMeshProUGUI mTextNativeMemoryFootprint;
-    [SerializeField] TextMeshProUGUI mTextNativeAvailableMemory;
-    [SerializeField] TextMeshProUGUI mTextNativeAbsoluteLimit;
-    [SerializeField] TextMeshProUGUI mTextNativePhysicalMemory;
-
     [SerializeField] Button mButtonGraphicsDriverAllocater;
 
     long mSystemMemorySizeMB;
@@ -258,37 +251,6 @@ public class MemoryManager : MonoBehaviour
         UpdateMemoryDisplayLong(ref mTotalUnReservedMemoryLong, Profiler.GetTotalUnusedReservedMemoryLong(), mTextTotalUnReservedMemory);
         UpdateMemoryDisplayLong(ref mGraphicsDriverAllocatorMemoryLong, Profiler.GetAllocatedMemoryForGraphicsDriver(), mTextGraphicDriverAllocatorMemory);
         UpdateMemoryDisplayUInt(ref mTempAllocatorSize, Profiler.GetTempAllocatorSize(), mTextTmpAllocatorSize);
-
-        // Native Memory Info
-        UpdateNativeMemoryDisplay();
-    }
-
-    void UpdateNativeMemoryDisplay()
-    {
-        if (mTextNativeAllocatedMemory != null)
-        {
-            mTextNativeAllocatedMemory.text = FormatBytes((long)NativeMemoryInfo.GetAllocatedMemorySize());
-        }
-
-        if (mTextNativeMemoryFootprint != null)
-        {
-            mTextNativeMemoryFootprint.text = FormatBytes((long)NativeMemoryInfo.GetMemoryFootprintSize());
-        }
-
-        if (mTextNativeAvailableMemory != null)
-        {
-            mTextNativeAvailableMemory.text = FormatBytes((long)NativeMemoryInfo.GetAvailableMemory());
-        }
-
-        if (mTextNativeAbsoluteLimit != null)
-        {
-            mTextNativeAbsoluteLimit.text = FormatBytes((long)NativeMemoryInfo.GetAbsoluteLimit());
-        }
-
-        if (mTextNativePhysicalMemory != null)
-        {
-            mTextNativePhysicalMemory.text = FormatBytes((long)NativeMemoryInfo.GetPhysicalMemorySize());
-        }
     }
 
     /// <summary>
@@ -299,10 +261,7 @@ public class MemoryManager : MonoBehaviour
         if (cachedValue != newValue)
         {
             cachedValue = newValue;
-            if (textField != null)
-            {
-                textField.text = FormatBytes(cachedValue * multiplier);
-            }
+            textField.text = FormatBytes(cachedValue * multiplier);
         }
     }
 
@@ -314,10 +273,7 @@ public class MemoryManager : MonoBehaviour
         if (cachedValue != newValue)
         {
             cachedValue = newValue;
-            if (textField != null)
-            {
-                textField.text = FormatBytes(cachedValue * multiplier);
-            }
+            textField.text = FormatBytes(cachedValue * multiplier);
         }
     }
 
@@ -329,10 +285,7 @@ public class MemoryManager : MonoBehaviour
         if (cachedValue != newValue)
         {
             cachedValue = newValue;
-            if (textField != null)
-            {
-                textField.text = FormatBytes(cachedValue * multiplier);
-            }
+            textField.text = FormatBytes(cachedValue * multiplier);
         }
     }
 
