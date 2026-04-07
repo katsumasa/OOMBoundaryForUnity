@@ -6,7 +6,7 @@ Out of Memoryを発生させ、それまでの過程を観察する為のToolで
 
 ## 🚀 クイックスタート
 
-**初めて使う方は [QUICK_START.md](QUICK_START.md) をご覧ください。**
+**初めて使う方は [QUICK_START.md](Docs/QUICK_START.md) をご覧ください。**
 
 5分で以下が完了します：
 1. Unity Editorの起動
@@ -16,9 +16,10 @@ Out of Memoryを発生させ、それまでの過程を観察する為のToolで
 
 ## 📋 ドキュメント
 
-- **[QUICK_START.md](QUICK_START.md)** - 5分で始めるクイックガイド
+- **[QUICK_START.md](Docs/QUICK_START.md)** - 5分で始めるクイックガイド
 - **[Assets/Tests/README.md](Assets/Tests/README.md)** - テストの実行方法
-- **[CHANGES_SUMMARY.md](CHANGES_SUMMARY.md)** - 最新の変更内容
+- **[CHANGES_SUMMARY.md](Docs/CHANGES_SUMMARY.md)** - 最新の変更内容
+- **[その他のドキュメント](Docs/)** - Docsフォルダー内の詳細ドキュメント
 
 ## 説明
 
@@ -159,9 +160,9 @@ OSネイティブレベルのメモリ情報を取得する機能です。各プ
 
 アプリケーションが使用できるメモリの上限です。この値を超えるとOOM（Out of Memory）が発生する可能性があります。
 
-- **iOS**: `os_proc_available_memory() + phys_footprint` - 現在のフットプリント + 利用可能メモリ
-- **Android**: `ActivityManager.MemoryInfo`の`totalMem` - デバイスの総メモリ
-- **Windows**: 物理メモリの90% - 経験的な上限値
+- **iOS**: `phys_footprint + os_proc_available_memory()` - 現在のフットプリント + 利用可能メモリ
+- **Android**: `getTotalPss() + availMem` - 現在のフットプリント + 利用可能メモリ
+- **Windows**: `WorkingSetSize + ullAvailPhys` - 現在のフットプリント + 利用可能メモリ
 
 #### Physical Memory（物理メモリサイズ）
 

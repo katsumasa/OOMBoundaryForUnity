@@ -87,23 +87,8 @@ extern "C" {
         data->physicalMemorySize = GetPhysicalMemorySize();
 
         // 絶対的限界値の計算
-        // OOMBoundaryの実装を参考に
-        uint64_t physicalMemory = data->physicalMemorySize;
-
-        // デバイスの物理メモリに基づいて限界値を推定
-        if (physicalMemory <= 1024 * 1024 * 1024) {
-            // 1GB以下のデバイス
-            data->absoluteLimit = (uint64_t)(physicalMemory * 0.7);
-        } else if (physicalMemory <= 2ULL * 1024 * 1024 * 1024) {
-            // 2GB以下のデバイス
-            data->absoluteLimit = (uint64_t)(physicalMemory * 0.75);
-        } else if (physicalMemory <= 3ULL * 1024 * 1024 * 1024) {
-            // 3GB以下のデバイス
-            data->absoluteLimit = (uint64_t)(physicalMemory * 0.8);
-        } else {
-            // 4GB以上のデバイス
-            data->absoluteLimit = (uint64_t)(physicalMemory * 0.85);
-        }
+        // 現在のフットプリント + 利用可能メモリ = このアプリが使用できる最大メモリ
+        data->absoluteLimit = data->memoryFootprint + data->availableMemory;
     }
 
     /// 個別取得関数

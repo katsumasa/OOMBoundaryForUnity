@@ -53,8 +53,9 @@ public class NativeMemoryInfo {
         // 物理メモリサイズ
         data.physicalMemorySize = mi.totalMem;
 
-        // 絶対的限界値（デバイスのメモリ容量の80%程度）
-        data.absoluteLimit = (long)(data.physicalMemorySize * 0.8);
+        // 絶対的限界値の計算
+        // 現在のフットプリント + 利用可能メモリ = このアプリが使用できる最大メモリ
+        data.absoluteLimit = data.memoryFootprint + data.availableMemory;
 
         return data;
     }
@@ -80,10 +81,8 @@ public class NativeMemoryInfo {
     }
 
     public static long GetAbsoluteMemoryLimit() {
-        ActivityManager activityManager = getActivityManager();
-        ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
-        activityManager.getMemoryInfo(mi);
-        return (long)(mi.totalMem * 0.8);
+        // 現在のフットプリント + 利用可能メモリ
+        return GetMemoryFootprint() + GetAvailableMemory();
     }
 
     public static long GetPhysicalMemory() {

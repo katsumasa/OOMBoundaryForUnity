@@ -138,9 +138,9 @@
 
 ## 詳細ドキュメント 📚
 
-- **プロジェクト概要**: `README.md`
-- **テストの実行方法**: `Assets/Tests/README.md`
-- **変更サマリー**: `CHANGES_SUMMARY.md`
+- **プロジェクト概要**: [`../README.md`](../README.md)
+- **テストの実行方法**: [`../Assets/Tests/README.md`](../Assets/Tests/README.md)
+- **変更サマリー**: [`CHANGES_SUMMARY.md`](CHANGES_SUMMARY.md)
 
 ---
 
