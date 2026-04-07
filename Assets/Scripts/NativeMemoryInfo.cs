@@ -251,7 +251,6 @@ public static class NativeMemoryInfo
         {
             data.physicalMemorySize = memStatus.ullTotalPhys;
             data.availableMemory = memStatus.ullAvailPhys;
-            data.absoluteLimit = (ulong)(memStatus.ullTotalPhys * 0.9); // Windows: 90%
         }
 
         PROCESS_MEMORY_COUNTERS pmc = new PROCESS_MEMORY_COUNTERS();
@@ -262,6 +261,10 @@ public static class NativeMemoryInfo
             data.allocatedMemory = pmc.PagefileUsage;
             data.memoryFootprint = pmc.WorkingSetSize;
         }
+
+        // 絶対的限界値の計算
+        // 現在のフットプリント + 利用可能メモリ = このアプリが使用できる最大メモリ
+        data.absoluteLimit = data.memoryFootprint + data.availableMemory;
 
         return data;
     }
@@ -301,13 +304,8 @@ public static class NativeMemoryInfo
 
     private static ulong GetAbsoluteLimitWindows()
     {
-        MEMORYSTATUSEX memStatus = new MEMORYSTATUSEX();
-        memStatus.dwLength = (uint)Marshal.SizeOf(typeof(MEMORYSTATUSEX));
-        if (GlobalMemoryStatusEx(ref memStatus))
-        {
-            return (ulong)(memStatus.ullTotalPhys * 0.9);
-        }
-        return 0;
+        // 現在のフットプリント + 利用可能メモリ
+        return GetMemoryFootprintWindows() + GetAvailableMemoryWindows();
     }
 
     private static ulong GetPhysicalMemoryWindows()
