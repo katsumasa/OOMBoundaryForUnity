@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 664362001}
   - component: {fileID: 664362000}
   m_Layer: 5
-  m_Name: 'Button(GC) '
+  m_Name: 'Button(MonoGC) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3500,7 +3500,7 @@ GameObject:
   - component: {fileID: 976744138}
   - component: {fileID: 976744137}
   m_Layer: 5
-  m_Name: Button(Free)
+  m_Name: Button(MonoFree)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3908,7 +3908,7 @@ GameObject:
   - component: {fileID: 1194256409}
   - component: {fileID: 1194256408}
   m_Layer: 5
-  m_Name: 'Button(Free) '
+  m_Name: 'Button(GraphicsDriverFree) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6221,6 +6221,13 @@ MonoBehaviour:
   mTextNativeAvailableMemory: {fileID: 470663059}
   mTextNativeAbsoluteLimit: {fileID: 553775968}
   mTextNativePhysicalMemory: {fileID: 759810019}
+  mButtonTotalAllcate: {fileID: 1459306777}
+  mButtonTotalFree: {fileID: 871505930}
+  mButtonGraphicsDriverAllcate: {fileID: 2087640938}
+  mButtonGraphicsDriverFree: {fileID: 1194256406}
+  mButtonMonoAllcate: {fileID: 2136423374}
+  mButtonMonoFree: {fileID: 976744135}
+  mButtonMonoGC: {fileID: 664361998}
 --- !u!1 &1826217413
 GameObject:
   m_ObjectHideFlags: 0
@@ -7066,7 +7073,7 @@ GameObject:
   - component: {fileID: 2087640941}
   - component: {fileID: 2087640940}
   m_Layer: 5
-  m_Name: Button(Allocate)
+  m_Name: Button(GraphicsDriverAllocate)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7337,7 +7344,7 @@ GameObject:
   - component: {fileID: 2136423377}
   - component: {fileID: 2136423376}
   m_Layer: 5
-  m_Name: Button(Allocate)
+  m_Name: Button(MonoAllocate)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
