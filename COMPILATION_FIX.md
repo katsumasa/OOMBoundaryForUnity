@@ -174,8 +174,8 @@ EditorTests  RuntimeTests
    - `Window > General > Test Runner`
    - EditMode / PlayMode 両方のテストを実行
 
-2. **UIボタンを接続**
-   - `Tools > Memory Manager > Auto Connect UI Buttons`
+2. **シーンを確認**
+   - `Assets/Scenes/MainScene.unity` を開く
 
 3. **動作確認**
    - 再生ボタンを押してメモリ監視をテスト

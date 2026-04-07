@@ -8,21 +8,13 @@
 2. `Assets/Scenes/MainScene.unity` をダブルクリックして開く
 3. Unity Editorが完全に起動するまで待つ
 
-## ステップ2: ボタンを自動接続 (1分) ⚡
+## ステップ2: シーンの確認 (1分)
 
-### 自動接続ツールを使用（推奨）
+1. MainSceneが開かれていることを確認
+2. Hierarchyウィンドウで「MemoryManager」GameObjectが存在することを確認
+3. すべてのUIコンポーネントが配置されていることを確認
 
-1. Unity Editorのメニューバーから **`Tools > Memory Manager > Auto Connect UI Buttons`** を選択
-2. 開いたウィンドウで **`Auto Connect All Buttons`** ボタンをクリック
-3. "Success" ダイアログが表示されたら **OK** をクリック
-4. **Ctrl+S** (または Cmd+S) でシーンを保存
-
-✅ これで完了です！すべてのボタンが自動的に接続されました。
-
-### 接続を確認する（オプション）
-
-メニューから **`Tools > Memory Manager > Verify UI Connections`** を選択すると、
-接続状況のレポートが表示されます。
+✅ MainSceneにはすべてのUIが既にセットアップされています。
 
 ---
 
@@ -87,8 +79,9 @@
 **原因**: ボタンが正しく接続されていない
 
 **解決策**:
-1. `Tools > Memory Manager > Verify UI Connections` で接続状況を確認
-2. 接続されていないボタンがあれば、`Auto Connect UI Buttons` を再実行
+1. Hierarchyで各ボタンを選択
+2. Inspectorの `Button` コンポーネントで `On Click()` イベントを確認
+3. MemoryManagerオブジェクトと対応するメソッドが設定されているか確認
 
 ### "MemoryManagerが見つかりません" と表示される
 
@@ -97,7 +90,7 @@
 **解決策**:
 1. Hierarchyウィンドウで「MemoryManager」という名前のGameObjectを探す
 2. なければ、空のGameObjectを作成して `MemoryManager` スクリプトをアタッチ
-3. ステップ2を再実行
+3. 必要なUIフィールドをInspectorで接続
 
 ### 数値が表示されない
 
@@ -162,4 +155,4 @@
 ---
 
 **所要時間**: 合計 約5分
-**難易度**: ⭐ 簡単（自動化ツール使用）
+**難易度**: ⭐ 簡単
