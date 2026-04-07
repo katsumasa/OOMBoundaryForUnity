@@ -34,6 +34,14 @@ public class MemoryManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI mTextNativeAbsoluteLimit;
     [SerializeField] TextMeshProUGUI mTextNativePhysicalMemory;
 
+    [SerializeField] GameObject mButtonTotalAllcate;
+    [SerializeField] GameObject mButtonTotalFree;
+    [SerializeField] GameObject mButtonGraphicsDriverAllcate;
+    [SerializeField] GameObject mButtonGraphicsDriverFree;
+    [SerializeField] GameObject mButtonMonoAllcate;
+    [SerializeField] GameObject mButtonMonoFree;
+    [SerializeField] GameObject mButtonMonoGC;
+
     long mSystemMemorySizeMB;
     long mGraphicsMemorySizeMB;
     long mMonoHeapSizeLong;
@@ -70,13 +78,24 @@ public class MemoryManager : MonoBehaviour
     /// </summary>
     public void ToggleTotalAllocate()
     {
+        var image = mButtonTotalAllcate.GetComponent<Image>();
+        var button = mButtonTotalAllcate.GetComponent<Button>();
+
         if (mTotalAllocaterMode == AllocateMode.Increase)
         {
             mTotalAllocaterMode = AllocateMode.None;
+            if (image != null && button)
+            {
+                image.color = button.colors.normalColor;
+            }
         }
         else
         {
-            mTotalAllocaterMode = AllocateMode.Increase;
+            mTotalAllocaterMode = AllocateMode.Increase;            
+            if (image != null && button)
+            {
+                image.color = button.colors.pressedColor;
+            }
         }
     }
 
@@ -85,13 +104,24 @@ public class MemoryManager : MonoBehaviour
     /// </summary>
     public void ToggleTotalFree()
     {
+        var image = mButtonTotalFree.GetComponent<Image>();
+        var button = mButtonTotalFree.GetComponent<Button>();
+
         if (mTotalAllocaterMode == AllocateMode.Decrease)
         {
             mTotalAllocaterMode = AllocateMode.None;
+            if (image != null && button)
+            {
+                image.color = button.colors.normalColor;
+            }
         }
         else
         {
             mTotalAllocaterMode = AllocateMode.Decrease;
+            if (image != null && button)
+            {
+                image.color = button.colors.pressedColor;
+            }
         }
     }
 
@@ -100,13 +130,24 @@ public class MemoryManager : MonoBehaviour
     /// </summary>
     public void ToggleGraphicsDriverAllocate()
     {
+        var image = mButtonGraphicsDriverAllcate.GetComponent<Image>();
+        var button = mButtonGraphicsDriverAllcate.GetComponent<Button>();
+
         if (mGraphicsDriverAllocaterMode == AllocateMode.Increase)
         {
             mGraphicsDriverAllocaterMode = AllocateMode.None;
+            if (image != null && button)
+            {
+                image.color = button.colors.normalColor;
+            }
         }
         else
         {
             mGraphicsDriverAllocaterMode = AllocateMode.Increase;
+            if (image != null && button)
+            {
+                image.color = button.colors.pressedColor;
+            }
         }
     }
 
@@ -115,13 +156,24 @@ public class MemoryManager : MonoBehaviour
     /// </summary>
     public void ToggleGraphicsDriverFree()
     {
+        var image = mButtonGraphicsDriverFree.GetComponent<Image>();
+        var button = mButtonGraphicsDriverFree.GetComponent<Button>();
+
         if (mGraphicsDriverAllocaterMode == AllocateMode.Decrease)
         {
             mGraphicsDriverAllocaterMode = AllocateMode.None;
+            if (image != null && button)
+            {
+                image.color = button.colors.normalColor;
+            }
         }
         else
         {
             mGraphicsDriverAllocaterMode = AllocateMode.Decrease;
+            if (image != null && button)
+            {
+                image.color = button.colors.pressedColor;
+            }
         }
     }
 
@@ -130,13 +182,24 @@ public class MemoryManager : MonoBehaviour
     /// </summary>
     public void ToggleMonoHeapAllocate()
     {
+        var image = mButtonMonoAllcate.GetComponent<Image>();
+        var button = mButtonMonoAllcate.GetComponent<Button>();
+
         if (mMonoHeapAllocaterMode == AllocateMode.Increase)
         {
             mMonoHeapAllocaterMode = AllocateMode.None;
+            if (image != null && button)
+            {
+                image.color = button.colors.normalColor;
+            }
         }
         else
         {
             mMonoHeapAllocaterMode = AllocateMode.Increase;
+            if (image != null && button)
+            {
+                image.color = button.colors.pressedColor;
+            }
         }
     }
 
@@ -145,13 +208,24 @@ public class MemoryManager : MonoBehaviour
     /// </summary>
     public void ToggleMonoHeapFree()
     {
+        var image = mButtonMonoFree.GetComponent<Image>();
+        var button = mButtonMonoFree.GetComponent<Button>();
+
         if (mMonoHeapAllocaterMode == AllocateMode.Decrease)
         {
             mMonoHeapAllocaterMode = AllocateMode.None;
+            if (image != null && button)
+            {
+                image.color = button.colors.normalColor;
+            }
         }
         else
         {
             mMonoHeapAllocaterMode = AllocateMode.Decrease;
+            if (image != null && button)
+            {
+                image.color = button.colors.pressedColor;
+            }
         }
     }
 
@@ -222,7 +296,7 @@ public class MemoryManager : MonoBehaviour
         {
             case AllocateMode.None:
                 break;
-            case AllocateMode.Increase:
+            case AllocateMode.Increase:        
                 TotalAllocaterIncrease();
                 break;
             case AllocateMode.Decrease:
