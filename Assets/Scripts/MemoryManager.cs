@@ -281,7 +281,7 @@ public class MemoryManager : MonoBehaviour
         UpdateMemoryDisplayULong(ref mNativeFootPrintMemoryLong, memoryData.memoryFootprint, mTextNativeFootPrint);
         UpdateMemoryDisplayULong(ref mNativeAvailableMemoryLong, memoryData.availableMemory, mTextNativeAvailableMemory);
         UpdateMemoryDisplayULong(ref mNativeAbsoluteLimit, memoryData.absoluteLimit, mTextNativeAbsoluteLimit);
-        UpdateMemoryDisplayULong(ref mNativePhysicalMemoryLong, memoryData.physicalMemory, mTextNativePhysicalMemory);
+        UpdateMemoryDisplayULong(ref mNativePhysicalMemoryLong, memoryData.physicalMemorySize, mTextNativePhysicalMemory);
     }
 
     /// <summary>
