@@ -4,6 +4,23 @@
 
 Out of Memoryを発生させ、それまでの過程を観察する為のToolです。
 
+## 🚀 クイックスタート
+
+**初めて使う方は [QUICK_START.md](QUICK_START.md) をご覧ください。**
+
+5分で以下が完了します：
+1. Unity Editorの起動
+2. UIボタンの自動接続（ツール使用）
+3. 動作テスト
+4. ユニットテストの実行
+
+## 📋 ドキュメント
+
+- **[QUICK_START.md](QUICK_START.md)** - 5分で始めるクイックガイド
+- **[Assets/Scenes/UI_SETUP.md](Assets/Scenes/UI_SETUP.md)** - UI接続の詳細手順
+- **[Assets/Tests/README.md](Assets/Tests/README.md)** - テストの実行方法
+- **[CHANGES_SUMMARY.md](CHANGES_SUMMARY.md)** - 最新の変更内容
+
 ## 説明
 
 ### SystemInfo
