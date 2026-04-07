@@ -261,7 +261,10 @@ public class MemoryManager : MonoBehaviour
         if (cachedValue != newValue)
         {
             cachedValue = newValue;
-            textField.text = FormatBytes(cachedValue * multiplier);
+            if (textField != null)
+            {
+                textField.text = FormatBytes(cachedValue * multiplier);
+            }
         }
     }
 
@@ -273,7 +276,10 @@ public class MemoryManager : MonoBehaviour
         if (cachedValue != newValue)
         {
             cachedValue = newValue;
-            textField.text = FormatBytes(cachedValue * multiplier);
+            if (textField != null)
+            {
+                textField.text = FormatBytes(cachedValue * multiplier);
+            }
         }
     }
 
@@ -285,7 +291,10 @@ public class MemoryManager : MonoBehaviour
         if (cachedValue != newValue)
         {
             cachedValue = newValue;
-            textField.text = FormatBytes(cachedValue * multiplier);
+            if (textField != null)
+            {
+                textField.text = FormatBytes(cachedValue * multiplier);
+            }
         }
     }
 
