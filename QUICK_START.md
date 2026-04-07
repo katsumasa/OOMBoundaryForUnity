@@ -139,7 +139,6 @@
 ## 詳細ドキュメント 📚
 
 - **プロジェクト概要**: `README.md`
-- **UI接続の詳細**: `Assets/Scenes/UI_SETUP.md`
 - **テストの実行方法**: `Assets/Tests/README.md`
 - **変更サマリー**: `CHANGES_SUMMARY.md`
 

@@ -46,8 +46,7 @@
    - ToggleMonoHeapAllocate() / ToggleMonoHeapFree()
 
 8. **UIセットアップガイドの作成** ✅
-   - Assets/Scenes/UI_SETUP.md を作成
-   - ボタンとメソッドの接続手順を詳細に記載
+   - UIボタンとメソッドの接続手順を作成（完了済み）
 
 ## 変更されたファイル
 
@@ -68,7 +67,7 @@ New Files:
       └── MemoryManagerPlayModeTests.cs.meta
   
   Assets/Scenes/
-  └── UI_SETUP.md (UIセットアップガイド)
+  └── MainScene.unity (UIセットアップ完了済み)
 ```
 
 ## 次のステップ
@@ -81,8 +80,8 @@ MainSceneを開いて、以下の手順でUIボタンを接続してください
    - MainSceneを開く
 
 2. **ボタンとメソッドを接続**
-   - `Assets/Scenes/UI_SETUP.md` の手順に従う
-   - 各ボタンのOnClickイベントに対応するToggleメソッドを設定
+   - MainSceneに既に接続済み
+   - 各ボタンのOnClickイベントに対応するToggleメソッドが設定済み
 
 3. **接続の確認**
    - MemoryManagerのSerializedFieldが正しく設定されているか確認

@@ -17,7 +17,6 @@ Out of Memoryを発生させ、それまでの過程を観察する為のToolで
 ## 📋 ドキュメント
 
 - **[QUICK_START.md](QUICK_START.md)** - 5分で始めるクイックガイド
-- **[Assets/Scenes/UI_SETUP.md](Assets/Scenes/UI_SETUP.md)** - UI接続の詳細手順
 - **[Assets/Tests/README.md](Assets/Tests/README.md)** - テストの実行方法
 - **[CHANGES_SUMMARY.md](CHANGES_SUMMARY.md)** - 最新の変更内容
 
