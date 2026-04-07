@@ -28,7 +28,11 @@ public class MemoryManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI mTextGraphicDriverAllocatorMemory;
     [SerializeField] TextMeshProUGUI mTextTmpAllocatorSize;
 
-    [SerializeField] Button mButtonGraphicsDriverAllocater;
+    [SerializeField] TextMeshProUGUI mTextNativeAllocatedMemory;
+    [SerializeField] TextMeshProUGUI mTextNativeFootPrint;
+    [SerializeField] TextMeshProUGUI mTextNativeAvailableMemory;
+    [SerializeField] TextMeshProUGUI mTextNativeAbsoluteLimit;
+    [SerializeField] TextMeshProUGUI mTextNativePhysicalMemory;
 
     long mSystemMemorySizeMB;
     long mGraphicsMemorySizeMB;
@@ -38,6 +42,13 @@ public class MemoryManager : MonoBehaviour
     long mTotalAllocatorMemoryLong;
     long mTotalUnReservedMemoryLong;
     long mGraphicsDriverAllocatorMemoryLong;
+
+    ulong mNativeAllocatedMemoryLong;
+    ulong mNativeFootPrintMemoryLong;
+    ulong mNativeAvailableMemoryLong;
+    ulong mNativePhysicalMemoryLong;
+    ulong mNativeAbsoluteLimit;
+
     uint mTempAllocatorSize;
 
 
@@ -167,6 +178,12 @@ public class MemoryManager : MonoBehaviour
         mGraphicsDriverAllocatorMemoryLong = -1;
         mTempAllocatorSize = 0;
 
+        mNativeAllocatedMemoryLong = 0;
+        mNativeFootPrintMemoryLong = 0;
+        mNativeAvailableMemoryLong = 0;
+        mNativePhysicalMemoryLong = 0;
+        mNativeAbsoluteLimit = 0;
+
         mTotalAllocaterMode = AllocateMode.None;
         mGraphicsDriverAllocaterMode = AllocateMode.None;
         mMonoHeapAllocaterMode = AllocateMode.None;
@@ -251,6 +268,20 @@ public class MemoryManager : MonoBehaviour
         UpdateMemoryDisplayLong(ref mTotalUnReservedMemoryLong, Profiler.GetTotalUnusedReservedMemoryLong(), mTextTotalUnReservedMemory);
         UpdateMemoryDisplayLong(ref mGraphicsDriverAllocatorMemoryLong, Profiler.GetAllocatedMemoryForGraphicsDriver(), mTextGraphicDriverAllocatorMemory);
         UpdateMemoryDisplayUInt(ref mTempAllocatorSize, Profiler.GetTempAllocatorSize(), mTextTmpAllocatorSize);
+
+        // Native Memory Info
+        UpdateNativeMemoryDisplay();
+    }
+
+    void UpdateNativeMemoryDisplay()
+    {
+        var memoryData = NativeMemoryInfo.GetMemoryInfo();
+
+        UpdateMemoryDisplayULong(ref mNativeAllocatedMemoryLong, memoryData.allocatedMemory, mTextNativeAllocatedMemory);
+        UpdateMemoryDisplayULong(ref mNativeFootPrintMemoryLong, memoryData.memoryFootprint, mTextNativeFootPrint);
+        UpdateMemoryDisplayULong(ref mNativeAvailableMemoryLong, memoryData.availableMemory, mTextNativeAvailableMemory);
+        UpdateMemoryDisplayULong(ref mNativeAbsoluteLimit, memoryData.absoluteLimit, mTextNativeAbsoluteLimit);
+        UpdateMemoryDisplayULong(ref mNativePhysicalMemoryLong, memoryData.physicalMemory, mTextNativePhysicalMemory);
     }
 
     /// <summary>
@@ -286,6 +317,21 @@ public class MemoryManager : MonoBehaviour
         {
             cachedValue = newValue;
             textField.text = FormatBytes(cachedValue * multiplier);
+        }
+    }
+
+    /// <summary>
+    /// メモリ表示を更新するヘルパーメソッド (ulong型用)
+    /// </summary>
+    void UpdateMemoryDisplayULong(ref ulong cachedValue, ulong newValue, TextMeshProUGUI textField, ulong multiplier = 1)
+    {
+        if (cachedValue != newValue)
+        {
+            cachedValue = newValue;
+            if (textField != null)
+            {
+                textField.text = FormatBytes((long)(cachedValue * multiplier));
+            }
         }
     }
 
