@@ -118,3 +118,79 @@ UnityがOSから確保している「マネージドヒープ（C#用のメモ�
 #### Free Button
 毎フレーム確保したオブジェクトを削除します。
 もう一度押すと停止します。
+
+## 🔍 Native Memory Info
+
+OSネイティブレベルのメモリ情報を取得する機能です。各プラットフォーム（iOS、Android、Windows）でネイティブプラグインを使用して、Unity APIでは取得できない詳細なメモリ情報を提供します。
+
+### 対応プラットフォーム
+
+- **iOS**: Objective-C++プラグイン (`Assets/Plugins/iOS/NativeMemoryInfo.mm`)
+- **Android**: Javaプラグイン (`Assets/Plugins/Android/NativeMemoryInfo.java`)
+- **Windows**: P/Invoke (`Assets/Scripts/NativeMemoryInfo.cs`)
+- **Editor**: Windowsプラットフォームの実装を使用
+
+### 取得できるメモリ情報
+
+#### Allocated Memory（確保済みメモリ）
+
+アプリケーションが確保しているメモリの総量です。
+
+- **iOS**: `task_info`の`resident_size`
+- **Android**: `Debug.MemoryInfo`の`getTotalPrivateDirty()`
+- **Windows**: `PROCESS_MEMORY_COUNTERS`の`PagefileUsage`
+
+#### Memory Footprint（物理メモリフットプリント）
+
+アプリケーションが実際に使用している物理メモリ量です。
+
+- **iOS**: `task_info`の`phys_footprint` - 実際のメモリ使用量を示す最も重要な指標
+- **Android**: `Debug.MemoryInfo`の`getTotalPss()` - Proportional Set Size
+- **Windows**: `PROCESS_MEMORY_COUNTERS`の`WorkingSetSize`
+
+#### Available Memory（利用可能メモリ）
+
+システムで現在利用可能なメモリ量です。
+
+- **iOS**: `os_proc_available_memory()` (iOS 13.0+) - アプリが追加で利用可能なメモリ
+- **Android**: `ActivityManager.MemoryInfo`の`availMem`
+- **Windows**: `MEMORYSTATUSEX`の`ullAvailPhys`
+
+#### Absolute Limit（絶対メモリ制限）
+
+アプリケーションが使用できるメモリの上限です。この値を超えるとOOM（Out of Memory）が発生する可能性があります。
+
+- **iOS**: `os_proc_available_memory() + phys_footprint` - 現在のフットプリント + 利用可能メモリ
+- **Android**: `ActivityManager.MemoryInfo`の`totalMem` - デバイスの総メモリ
+- **Windows**: 物理メモリの90% - 経験的な上限値
+
+#### Physical Memory（物理メモリサイズ）
+
+デバイスに搭載されている物理メモリの総量です。
+
+- **iOS**: `NSProcessInfo.physicalMemory`
+- **Android**: `ActivityManager.MemoryInfo`の`totalMem`
+- **Windows**: `MEMORYSTATUSEX`の`ullTotalPhys`
+
+### 使用方法
+
+```csharp
+// すべてのメモリ情報を一度に取得
+var memoryData = NativeMemoryInfo.GetMemoryInfo();
+Debug.Log($"Allocated: {memoryData.allocatedMemory}");
+Debug.Log($"Footprint: {memoryData.memoryFootprint}");
+Debug.Log($"Available: {memoryData.availableMemory}");
+Debug.Log($"Absolute Limit: {memoryData.absoluteLimit}");
+Debug.Log($"Physical Memory: {memoryData.physicalMemorySize}");
+
+// 個別に取得
+ulong allocated = NativeMemoryInfo.GetAllocatedMemorySize();
+ulong footprint = NativeMemoryInfo.GetMemoryFootprintSize();
+ulong available = NativeMemoryInfo.GetAvailableMemory();
+ulong limit = NativeMemoryInfo.GetAbsoluteLimit();
+ulong physical = NativeMemoryInfo.GetPhysicalMemorySize();
+```
+
+### 参考プロジェクト
+
+この機能は [OOMBoundary](https://github.com/katsumasa/OOMBoundary) の実装を参考にしています。
