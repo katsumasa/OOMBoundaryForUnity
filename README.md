@@ -6,7 +6,7 @@ Out of Memoryを発生させ、それまでの過程を観察する為のToolで
 
 ## 🚀 クイックスタート
 
-**初めて使う方は [QUICK_START.md](QUICK_START.md) をご覧ください。**
+**初めて使う方は [QUICK_START.md](Docs/QUICK_START.md) をご覧ください。**
 
 5分で以下が完了します：
 1. Unity Editorの起動
@@ -16,9 +16,10 @@ Out of Memoryを発生させ、それまでの過程を観察する為のToolで
 
 ## 📋 ドキュメント
 
-- **[QUICK_START.md](QUICK_START.md)** - 5分で始めるクイックガイド
+- **[QUICK_START.md](Docs/QUICK_START.md)** - 5分で始めるクイックガイド
 - **[Assets/Tests/README.md](Assets/Tests/README.md)** - テストの実行方法
-- **[CHANGES_SUMMARY.md](CHANGES_SUMMARY.md)** - 最新の変更内容
+- **[CHANGES_SUMMARY.md](Docs/CHANGES_SUMMARY.md)** - 最新の変更内容
+- **[その他のドキュメント](Docs/)** - Docsフォルダー内の詳細ドキュメント
 
 ## 説明
 
