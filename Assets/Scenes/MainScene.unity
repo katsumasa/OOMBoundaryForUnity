@@ -6218,8 +6218,8 @@ MonoBehaviour:
   mTextTmpAllocatorSize: {fileID: 1985843576}
   mTextNativeAllocatedMemory: {fileID: 936351833}
   mTextNativeFootPrint: {fileID: 1393636998}
-  mTextNativeAvailableMemory: {fileID: 553775968}
-  mTextNativeAbsoluteLimit: {fileID: 936351833}
+  mTextNativeAvailableMemory: {fileID: 470663059}
+  mTextNativeAbsoluteLimit: {fileID: 553775968}
   mTextNativePhysicalMemory: {fileID: 759810019}
 --- !u!1 &1826217413
 GameObject:
