@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # macOS
 .DS_Store
+
+# Claude Code working directory
+.claude/
