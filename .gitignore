@@ -71,5 +71,11 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Unity temporary files
+.utmp/
+
 # macOS
 .DS_Store
+
+# Claude Code working directory
+.claude/
