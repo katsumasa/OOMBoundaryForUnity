@@ -194,3 +194,60 @@ ulong physical = NativeMemoryInfo.GetPhysicalMemorySize();
 ### 参考プロジェクト
 
 この機能は [OOMBoundary](https://github.com/katsumasa/OOMBoundary) の実装を参考にしています。
+
+## 📱 iOS Build Settings
+
+iOSビルドにincreased-memory-limit capabilityを追加する機能です。この機能により、iOSアプリがOSから確保できるメモリ量の上限を引き上げることができます。
+
+### Increased Memory Limit Capability とは
+
+iOS 15.0以降で利用可能な、アプリケーションが使用できるメモリの上限を引き上げるためのEntitlementです。
+
+- **通常の制限**: デバイスの物理メモリに応じた標準的な制限（例: 6GB RAMのデバイスで約3GB）
+- **increased-memory-limit有効時**: より高い制限値が適用される（デバイスと状況によって異なる）
+
+この機能は、ゲームや3Dアプリ、大規模なデータ処理を行うアプリなど、メモリを大量に使用するアプリケーションで有用です。
+
+### 設定方法
+
+1. **Project Settingsを開く**
+   - Unity Editorで `Edit > Project Settings > iOS Build Settings` を選択
+
+2. **Capabilityを有効化**
+   - `Enable Increased Memory Limit` チェックボックスをオンにする（デフォルトは有効）
+
+3. **iOSビルドを実行**
+   - File > Build Settings > iOSを選択してビルド
+   - ビルド完了後、自動的に以下が実行されます：
+     - `App.entitlements` ファイルの作成
+     - `com.apple.developer.kernel.increased-memory-limit` キーの追加
+     - Xcodeプロジェクトへの統合
+
+### 実装の詳細
+
+- **iOSBuildPostProcessor.cs**: PostProcessBuild属性を使用してビルド後処理を実行
+- **iOSBuildSettings.cs**: ScriptableObjectで設定を永続化
+- **iOSBuildSettingsProvider.cs**: Project Settings UIを提供
+
+### 注意事項
+
+- この機能はiOS 15.0以降でのみ有効です
+- メモリ制限の具体的な上限値はデバイスとシステムの状態によって異なります
+- increased-memory-limitを有効にしても、無制限にメモリを使用できるわけではありません
+- アプリがメモリを過剰に使用すると、システムの安定性に影響を与える可能性があります
+
+### ビルドログ
+
+ビルド時、以下のようなログがConsoleに出力されます：
+
+```
+Adding increased memory limit capability to iOS build...
+Created/Updated entitlements file at: /path/to/build/App.entitlements
+Successfully added increased memory limit capability to iOS build
+```
+
+Capabilityが無効な場合：
+
+```
+Increased memory limit capability is disabled in Project Settings > iOS Build Settings
+```
