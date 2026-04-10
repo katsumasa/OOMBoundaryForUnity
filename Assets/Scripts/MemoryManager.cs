@@ -18,6 +18,10 @@ public class MemoryManager : MonoBehaviour
     
     private static readonly string[] Units = { "B", "KB", "MB", "GB", "TB", "PB", "EB" };
 
+    [SerializeField] TextMeshProUGUI mTextDeviceName;
+    [SerializeField] TextMeshProUGUI mTextOS;
+    [SerializeField] TextMeshProUGUI mTextUnityVersion;
+
     [SerializeField] TextMeshProUGUI mTextSystemMemorySize;
     [SerializeField] TextMeshProUGUI mTextGraphicsMemorySize;
     [SerializeField] TextMeshProUGUI mTextMonoHeapSize;
@@ -242,6 +246,11 @@ public class MemoryManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        mTextDeviceName.text = SystemInfo.deviceName + "(" + SystemInfo.deviceModel + ")";
+        mTextOS.text = SystemInfo.operatingSystem + "(" + SystemInfo.operatingSystemFamily + ")";
+        mTextUnityVersion.text = Application.unityVersion + (Debug.isDebugBuild ? " Development Build":"");
+        
+
         mSystemMemorySizeMB = -1;
         mGraphicsMemorySizeMB = -1;
         mMonoHeapSizeLong = -1;
